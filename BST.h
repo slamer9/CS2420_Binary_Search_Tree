@@ -1,5 +1,7 @@
 #pragma once
 
+#include "BSTNode.h"
+
 class BST
 {
 public:
@@ -9,9 +11,8 @@ public:
     void Print();
     void Erase(int item);
     void Insert(int item);  //Don't allow duplcates
-    void Traversals();  //FIX ME, PRE-ORDER, IN-ORDER, POST-ORDER
-                        //MLR= pre, LRM = post, LMR = in.
+    void Traversals();  //FIX ME, PRE-ORDER = mlr, IN-ORDER = lmr, POST-ORDER = lrm
 private:
-    int root;       //WHAT DATA TYPE?
+    BSTNode* root;       //WHAT DATA TYPE?
     unsigned int size;
 };

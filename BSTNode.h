@@ -22,9 +22,9 @@ public:
     int& data();     //Templatize?
     BSTNode*& left();
     BSTNode*& right();
-    void set_data();
-    void set_left();
-    void set_right();
+    void set_data(int newData);
+    void set_left(BSTNode* left);
+    void set_right(BSTNode* right);
 
     //CONSTANT MEMBER FUNCTIONS *******
     // const int& data()const;     //Templatize? [ ] what is purpose of second const?
@@ -33,7 +33,7 @@ public:
     bool is_leaf()const;
 
 private:
-    int data;       //Templatize?
+    int nodeData;       //Templatize?
     BSTNode* left_ptr;
     BSTNode* right_ptr;
 };

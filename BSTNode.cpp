@@ -2,7 +2,7 @@
 
 BSTNode::BSTNode(int data, BSTNode* left = nullptr, BSTNode* right = nullptr) //Templatize?
 {
-    this->data = data;
+    this->nodeData = data;
     this->left_ptr = left;
     this->right_ptr = right;
 }
@@ -15,7 +15,7 @@ BSTNode::~BSTNode()
 //MODIFICATION MEMBER FUNCTIONS *******
 int& BSTNode::data()     //Templatize?
 {
-    return this->data;
+    return this->nodeData;
 }
 
 BSTNode*& BSTNode::left()
@@ -28,25 +28,25 @@ BSTNode*& BSTNode::right()
     return this->right_ptr;
 }
 
-void BSTNode::set_data()
+void BSTNode::set_data(int newData)     //Templatize?
 {
-
+    this->nodeData;
 }
 
-void BSTNode::set_left()
+void BSTNode::set_left(BSTNode* left)
 {
-
+    this->left_ptr = left;
 }
 
-void BSTNode::set_right()
+void BSTNode::set_right(BSTNode* right)
 {
-    
+    this->right_ptr = right;
 }
 
 //CONSTANT MEMBER FUNCTIONS *******
 // const int& BSTNode::data()const     //Templatize? [ ] what is purpose of second const?
 // {
-//     return this->data;
+//     return this->nodeData;
 // }
 
 // const BSTNode* BSTNode::left()const //[ ] what is purpose of second const?
