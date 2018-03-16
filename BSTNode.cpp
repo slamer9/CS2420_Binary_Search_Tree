@@ -1,6 +1,6 @@
 #include "BSTNode.h"
 
-BSTNode::BSTNode(int data, BSTNode* left = nullptr, BSTNode* right = nullptr) //Templatize?
+BSTNode::BSTNode(int data, BSTNode* left, BSTNode* right) //Templatize?
 {
     this->nodeData = data;
     this->left_ptr = left;
@@ -29,12 +29,12 @@ BSTNode* BSTNode::right()
     return this->right_ptr;
 }
 
-BSTNode*& leftReference()
+BSTNode*& BSTNode::leftReference()
 {
     return this->left_ptr;
 }
 
-BSTNode*& rightReference()
+BSTNode*& BSTNode::rightReference()
 {
     return this->right_ptr;
 }
