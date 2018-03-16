@@ -10,7 +10,7 @@ BST::BST()
     this->root = nullptr;
 }
 
-BST::~BST()
+BST::~BST() //FIXME
 {
 
 }
@@ -47,6 +47,7 @@ void BST::erase_helper(BSTNode*& base, int value) //pointer reference?
                 temp = base;
                 base = base->left;
                 delete temp;
+                this->list_size--;
                 return;
             }
         } else if(base->left() == nullptr)
@@ -56,17 +57,18 @@ void BST::erase_helper(BSTNode*& base, int value) //pointer reference?
                 temp = base;
                 base = base->right();
                 delete temp;
+                this->list_size--;
                 return;
             }
         } else //delete a node where both branches have values
         {
             temp = base;
-            base = removeMaxUnder(base->left(), base);//FIXME
+            base = removeMaxUnder(base->left(), base);
             base->set_left(temp->left());
             base->set_right(temp->right());
             delete temp;
-
-            return;//?
+            this->list_size--;
+            return;
         }
     }else if(baseData < value)
     {
