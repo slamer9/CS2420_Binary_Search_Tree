@@ -20,8 +20,11 @@ public:
 
     //MODIFICATION MEMBER FUNCTIONS *******
     int& data();     //Templatize?
-    BSTNode*& left();
-    BSTNode*& right();
+    BSTNode* left();
+    BSTNode* right();
+    BSTNode*& leftReference();
+    BSTNode*& rightReference();
+    
     void set_data(int newData);
     void set_left(BSTNode* left);
     void set_right(BSTNode* right);

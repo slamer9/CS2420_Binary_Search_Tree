@@ -43,22 +43,6 @@ void BSTNode::set_right(BSTNode* right)
     this->right_ptr = right;
 }
 
-//CONSTANT MEMBER FUNCTIONS *******
-// const int& BSTNode::data()const     //Templatize? [ ] what is purpose of second const?
-// {
-//     return this->nodeData;
-// }
-
-// const BSTNode* BSTNode::left()const //[ ] what is purpose of second const?
-// {
-//     return this->left_ptr;
-// }
-
-// const BSTNode* BSTNode::right()const
-// {
-//     return this->right_ptr;
-// }
-
 bool BSTNode::is_leaf()const
 {
     return ((this->left_ptr == nullptr) && (this->right_ptr == nullptr));

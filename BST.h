@@ -7,12 +7,25 @@ class BST
 public:
     BST();
     ~BST();
-    unsigned int Size();
+    unsigned int size();
     void Print();
-    void Erase(int item);
-    void Insert(int item);  //Don't allow duplcates
-    void Traversals();  //FIX ME, PRE-ORDER = mlr, IN-ORDER = lmr, POST-ORDER = lrm
+
+    void Erase(int value);
+    BSTNode* removeMaxUnder(BSTNode*);
+
+    void Insert(int value);  //Don't allow duplcates
+
+    void Pre_order();   //PRE-ORDER = mlr
+    void In_order();    //IN-ORDER = lmr
+    void Post_order();  //POST-ORDER = lrm
+    
 private:
+    void erase_helper(BSTNode*& base, int value);
+
+    void preorder_helper(BSTNode* base, unsigned int depth);
+    void inorder_helper(BSTNode* base, unsigned int depth);
+    void postorder_helper(BSTNode* base, unsigned int depth);
+
     BSTNode* root;       //WHAT DATA TYPE?
-    unsigned int size;
+    unsigned int list_size;
 };
