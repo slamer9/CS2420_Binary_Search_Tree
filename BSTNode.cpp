@@ -9,7 +9,8 @@ BSTNode::BSTNode(int data, BSTNode* left = nullptr, BSTNode* right = nullptr) //
 
 BSTNode::~BSTNode()
 {
-
+    //if data changes from an int, to something that needs to be taken care of
+    //when it is deleted, take care of it here.
 }
 
 //MODIFICATION MEMBER FUNCTIONS *******
@@ -18,12 +19,22 @@ int& BSTNode::data()     //Templatize?
     return this->nodeData;
 }
 
-BSTNode*& BSTNode::left()
+BSTNode* BSTNode::left()
 {
     return this->left_ptr;
 }
 
-BSTNode*& BSTNode::right()
+BSTNode* BSTNode::right()
+{
+    return this->right_ptr;
+}
+
+BSTNode*& leftReference()
+{
+    return this->left_ptr;
+}
+
+BSTNode*& rightReference()
 {
     return this->right_ptr;
 }

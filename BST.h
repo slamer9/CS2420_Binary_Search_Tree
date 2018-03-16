@@ -20,6 +20,8 @@ public:
     void Post_order();  //POST-ORDER = lrm
     
 private:
+    void destructorHelper(BSTNode* base);
+
     void erase_helper(BSTNode*& base, int value);
 
     void preorder_helper(BSTNode* base, unsigned int depth);

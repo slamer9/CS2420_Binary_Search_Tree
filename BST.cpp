@@ -12,7 +12,23 @@ BST::BST()
 
 BST::~BST() //FIXME
 {
+    if(this->root != nullptr)
+    {
+        this->destructorHelper(this->root);
+    }
+}
 
+void destructorHelper(BSTNode* base)
+{
+    if(base->right() != nullptr)
+    {
+        destructorHelper(base->right());
+    }
+    if(base->left() != nullptr)
+    {
+        destructorHelper(base->left());
+    }
+    delete base;
 }
 
 unsigned int BST::size()
@@ -131,6 +147,7 @@ void BST::Insert(int value)
             {
                 discard = true;//discard value, no duplicates allowed.
                 temp = nullptr;//to exit while loop
+                cout << endl << "Value already in tree." << endl;
             } else
             {
                 cout << endl << "Error" << endl;
