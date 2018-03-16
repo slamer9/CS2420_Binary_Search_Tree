@@ -36,6 +36,23 @@ unsigned int BST::size()
     return this->list_size;
 }
 
+int BST::getMax()
+{
+    BSTNode* temp = this->root;
+    if(this->root->right() != nullptr)
+    {
+        temp = this->root;
+        while(temp->right() != nullptr)//set parent of max, ->right = deleted thing ->right
+        {
+            temp = temp->right();
+        }
+        return temp->data();
+    } else
+    {
+        return this->root->data();
+    }
+}
+
 void BST::Print()
 {
     this->Pre_order();
@@ -103,20 +120,48 @@ void BST::erase_helper(BSTNode*& base, int value) //pointer reference?
 
 BSTNode* BST::removeMaxUnder(BSTNode* base, BSTNode* parent) //base, nothing to right. Doesn't delete, just rearanges pointers
 {
-    if(base->right() != nullptr)
+    if(base != nullptr)
     {
-        while(base->right() != nullptr)//set parent of max, ->right = deleted thing ->right
+        if(base->right() != nullptr)
         {
-            parent = base;
-            base = base->right();
+            while(base->right() != nullptr)//set parent of max, ->right = deleted thing ->right
+            {
+                parent = base;
+                base = base->right();
+            }
+            parent->rightReference() = base->left();
+        } else
+        {
+            parent->leftReference() = base->left();
         }
-        parent->rightReference() = base->left();
+        base->leftReference() = nullptr;    //Not really necessary but makes it feel more complete to me
+        return base;
+    }
+}
+
+BSTNode* BST::removeMax()
+{
+    if(this->root != nullptr)
+    {
+        BSTNode* temp = this->root;
+        BSTNode* parent = this->root;
+        while(temp->right() != nullptr)
+        {
+            parent = temp;
+            temp = temp->right();
+        }
+        if(temp == this->root)
+        {
+
+        }else
+        {
+            parent->rightReference() = temp->left();
+            return temp;
+        }
     } else
     {
-        parent->leftReference() = base->left();
+        cout << endl << "List is empty." << endl;
     }
-    base->leftReference() = nullptr;
-    return base;
 }
 
 void BST::Insert(int value)
