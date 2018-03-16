@@ -38,10 +38,10 @@ int main( )
 {
 	
     BST myTree = BST();
-    
     char choice;   // A command character entered by the user
+    int entry;
     
-    cout << "I have initialized an empty sequence of real numbers." << endl;
+    cout << "I have initialized an empty sequence of real numbers." << endl;    //?
 
     do
     {
@@ -49,12 +49,28 @@ int main( )
         choice = toupper(get_user_command( ));
         switch (choice)
         {
+			case 'S': // Get size of BST
+                cout << endl << "The tree size is: " << myTree.size() << endl;
+                break;
+
             case 'I': // Insert a node into your BST declared above
-					  break;
-					  
-			//
-			//  More choices necessary to test all of your functions
-			//
+                get_number();
+			    break;
+            
+            case 'D': // Delete a node from your BST declared above
+                break;
+
+            case 'P': //Print your BST declared above
+			    break;
+            
+            case 'R': // pre-order
+                break;
+
+            case 'O': // in-order
+			    break;
+            
+            case 'T': // post-order
+                break;
 			
 			case 'Q': cout << "Ridicule is the best test of truth." << endl;
                       break;

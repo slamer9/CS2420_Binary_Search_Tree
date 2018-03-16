@@ -7,7 +7,9 @@ class BST
 public:
     BST();
     ~BST();
+
     unsigned int size();
+    
     void Print();
 
     void Erase(int value);
