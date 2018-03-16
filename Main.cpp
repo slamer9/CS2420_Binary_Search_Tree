@@ -21,17 +21,18 @@
 using namespace std;
 
 // PROTOTYPES for functions used by this test program:
-// These have already been written for you.
+    // These have already been written for you.
 
-char get_user_command( );
-// Postcondition: The user has been prompted to enter a one character command.
-// The next character has been read (skipping blanks and newline characters), 
-// and this character has been returned.
+    char get_user_command( );
+    // Postcondition: The user has been prompted to enter a one character command.
+    // The next character has been read (skipping blanks and newline characters), 
+    // and this character has been returned.
 
-double get_number( );
-// Postcondition: The user has been prompted to enter a real number. The
-// number has been read, echoed to the screen, and returned by the function.
+    double get_number( );
+    // Postcondition: The user has been prompted to enter a real number. The
+    // number has been read, echoed to the screen, and returned by the function.
 
+    void print_menu();
 
 int main( )
 {

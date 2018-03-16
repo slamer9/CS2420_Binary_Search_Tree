@@ -187,12 +187,12 @@ void preorder_helper(BSTNode* base, unsigned int depth)
 
     if(base->left() != nullptr)
     {
-        inorder_helper(base->left(), depth+1);
+        preorder_helper(base->left(), depth+1);
     }
 
     if(base->right() != nullptr)
     {
-        inorder_helper(base->right(), depth+1);
+        preorder_helper(base->right(), depth+1);
     }
 }
 
@@ -239,12 +239,12 @@ void postorder_helper(BSTNode* base, unsigned int depth)
 {
     if(base->left() != nullptr)
     {
-        inorder_helper(base->left(), depth+1);
+        postorder_helper(base->left(), depth+1);
     }
 
     if(base->right() != nullptr)
     {
-        inorder_helper(base->right(), depth+1);
+        postorder_helper(base->right(), depth+1);
     }
 
     for(unsigned int i =0; i < depth; ++i)
