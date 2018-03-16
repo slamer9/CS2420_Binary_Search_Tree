@@ -18,7 +18,7 @@ BST::~BST() //FIXME
     }
 }
 
-void destructorHelper(BSTNode* base)
+void BST::destructorHelper(BSTNode* base)
 {
     if(base->right() != nullptr)
     {
@@ -61,7 +61,7 @@ void BST::erase_helper(BSTNode*& base, int value) //pointer reference?
             if(base->left() != nullptr)
             {
                 temp = base;
-                base = base->left;
+                base = base->left();
                 delete temp;
                 this->list_size--;
                 return;
@@ -177,7 +177,7 @@ void BST::Pre_order()//PRE-ORDER = mlr
     }
 }
 
-void preorder_helper(BSTNode* base, unsigned int depth)
+void BST::preorder_helper(BSTNode* base, unsigned int depth)
 {
     for(unsigned int i =0; i < depth; ++i)
     {
@@ -206,7 +206,7 @@ void BST::In_order()//IN-ORDER = lmr
     }
 }
 
-void inorder_helper(BSTNode* base, unsigned int depth)
+void BST::inorder_helper(BSTNode* base, unsigned int depth)
 {
     if(base->left() != nullptr)
     {
@@ -235,7 +235,7 @@ void BST::Post_order()//POST-ORDER = lrm
     }
 }
 
-void postorder_helper(BSTNode* base, unsigned int depth)
+void BST::postorder_helper(BSTNode* base, unsigned int depth)
 {
     if(base->left() != nullptr)
     {
