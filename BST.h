@@ -11,7 +11,7 @@ public:
     void Print();
 
     void Erase(int value);
-    BSTNode* removeMaxUnder(BSTNode*);
+    BSTNode* removeMaxUnder(BSTNode* base, BSTNode* parent);
 
     void Insert(int value);  //Don't allow duplcates
 

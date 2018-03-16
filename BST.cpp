@@ -61,7 +61,7 @@ void BST::erase_helper(BSTNode*& base, int value) //pointer reference?
         } else //delete a node where both branches have values
         {
             temp = base;
-            base = removeMaxUnder(base->left());//FIXME
+            base = removeMaxUnder(base->left(), base);//FIXME
             base->set_left(temp->left());
             base->set_right(temp->right());
             delete temp;
@@ -72,21 +72,33 @@ void BST::erase_helper(BSTNode*& base, int value) //pointer reference?
     {
         if(base->right() != nullptr)
         {
-            erase_helper(base->right(), value);
+            erase_helper(base->rightReference(), value);
         }
     }else if(baseData > value)
     {
         if(base->left() != nullptr)
         {
-            erase_helper(base->left(), value);
+            erase_helper(base->leftReference(), value);
         }
     }
 }
 
-BSTNode* BST::removeMaxUnder(BSTNode* base) //base, nothing to right. Doesn't delete, just rearanges pointers
+BSTNode* BST::removeMaxUnder(BSTNode* base, BSTNode* parent) //base, nothing to right. Doesn't delete, just rearanges pointers
 {
-    while(base->right())//set parent of max, ->right = deleted thing ->right
-
+    if(base->right() != nullptr)
+    {
+        while(base->right() != nullptr)//set parent of max, ->right = deleted thing ->right
+        {
+            parent = base;
+            base = base->right();
+        }
+        parent->rightReference() = base->left();
+    } else
+    {
+        parent->leftReference() = base->left();
+    }
+    base->leftReference() = nullptr;
+    return base;
 }
 
 void BST::Insert(int value)
