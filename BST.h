@@ -27,7 +27,7 @@ public:
 private:
     void destructorHelper(BSTNode* base);
 
-    void erase_helper(BSTNode*& base, int value);
+    void erase_helper(BSTNode* base, BSTNode* parent, int value);
 
     void preorder_helper(BSTNode* base, unsigned int depth);
     void inorder_helper(BSTNode* base, unsigned int depth);

@@ -62,93 +62,121 @@ void BST::Erase(int value)
 {
     if(this->root != nullptr)
     {
-        this->erase_helper(this->root, value);
+        this->erase_helper(this->root, nullptr, value);
     } else
     {
         cout << endl << "List is empty." << endl;
     }
 }
 
-void BST::erase_helper(BSTNode*& base, int value) //pointer reference?
+void BST::erase_helper(BSTNode* base, BSTNode* parent, int value) //pointer reference?
 {
-    //BSTNode* temp;
+    bool isRoot = (base == this->root);
     int baseData = base->data();
 
-    if(base == this->root && baseData == value) //Delete root.
+    if(!isRoot) //Debugging
     {
+        if(! (base == parent->left() || base == parent->right()))
+        {
+            cout << "Your parent/base structure is wrong" << endl;
+        }
+    }
 
-    }else if(baseData == value)
+    if(baseData == value)   //Delete node
     {
-        cout << endl << "Logical error in erase_helper." << endl;
-    }else if(value < baseData)
-    {
-        if(base->left() != nullptr)
+        if(isRoot)  //Is root
         {
-            erase_helper(base->rightReference(), value);
-        }else
+            if(base->left() == nullptr)           //Is left-less
+            {
+                this->root = base->right();
+                delete base;
+                --this->list_size;
+                return;
+            }else if(base->right() == nullptr)    //Is right-less
+            {
+                this->root = base->left();
+                delete base;
+                --this->list_size;
+                return;
+            }
+            else                                 //Is fully linked node
+            {
+                BSTNode* temp = base;
+                base = removeMaxUnder(base->left(), base);
+                base->set_left(temp->left());
+                base->set_right(temp->right());
+
+                this->root = base;
+
+                delete temp;
+                this->list_size--;
+                return;
+            }
+        }else if(base->right() == nullptr)  //Is right-less
         {
-            //Value not in tree
-        }
-    }else if(value > baseData)
-    {
-        if(base->left() != nullptr)
-        {
-            erase_helper(base->leftReference(), value);
-        }
-    }//else if(baseData < value)
-    // {
-    //     if(base->right() != nullptr)
-    //     {
-    //         erase_helper(base->rightReference(), value);
-    //     }
-    // }else if(baseData > value)
-    // {
-    //     if(base->left() != nullptr)
-    //     {
-    //         erase_helper(base->leftReference(), value);
-    //     }
-    //}
-    else if(baseData == value)
-    {
-        if(base->right() == nullptr)
-        {
-            if(base->left() != nullptr)
+            if(parent->right() == base)
             {
                 parent->rightReference() = base->left();
                 delete base;
-                this->list_size--;
-                return;
+            }else if(parent->left() == base)
+            {
+                parent->leftReference() = base->left();
+                delete base;
             }else
             {
-                if(;
-                delete base;
-                this->list_size--;
-                return;
+                cout << endl << "Your parent logic failed" << endl; ///Debugging
             }
-        } else if(base->left() == nullptr)
+        }else if(base->left() == nullptr)   //Is left-less
         {
-            if(base->right() != nullptr)
+            if(parent->right() == base)
             {
-                temp->leftReference() = base->right();
+                parent->rightReference() = base->right();
                 delete base;
-                this->list_size--;
-                return;
+            }else if(parent->left() == base)
+            {
+                parent->leftReference() = base->right();
+                delete base;
             }else
             {
-                temp = nullptr;
-                delete base;
-                this->list_size--;
-                return;
+                cout << endl << "Your parent logic failed" << endl; ///Debugging
             }
-        } else //delete a node where both branches have values
+        }else                           //Is fully linked node
         {
-            temp = base;
+            BSTNode* temp = base;
             base = removeMaxUnder(base->left(), base);
             base->set_left(temp->left());
             base->set_right(temp->right());
+
+            //Link parent to base.
+            if(parent->right() == temp)
+            {
+                parent->rightReference() = base;
+            }else if(parent->left() == temp)
+            {
+                parent->leftReference() = base;
+            }else
+            {
+                cout << endl << "Your parent logic failed" << endl; ///Debugging
+            }
+
             delete temp;
             this->list_size--;
             return;
+        }
+    } else                  //Keep searching
+    {
+        if(value > baseData)
+        {
+            if(base->right() != nullptr)
+            {
+                erase_helper(base->right(), base, value);
+            }
+        }else if(value < baseData)
+        {
+            if(base->left() != nullptr)
+            {
+                erase_helper(base->left(), base, value);
+            }
         }
     }
 }
