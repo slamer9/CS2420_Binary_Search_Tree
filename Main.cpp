@@ -1,4 +1,4 @@
-//Fin(1)
+//Fin(real)
 /// An interactive test program template
 
 // File/Project Prolog
@@ -153,8 +153,8 @@ char get_user_command( )
     return command;
 }
 
-int get_number( )    //I changed to an int (from a double) because the instructions said
-                        //Insert() and Delete() took int values.   DR
+int get_number( )   //I changed to an int (from a double) because the instructions said
+                    //Insert() and Delete() took int values.   DR
 // Library facilities used: iostream
 {
     int result;
@@ -169,6 +169,7 @@ int get_number( )    //I changed to an int (from a double) because the instructi
     {
         cout << endl << "Invalid input, input an integer." << endl;
         validInput = false;   //FIXME: Throw exception in stead if I have the time to implement it.
+        cin.clear();
         return 0;
     }
 }

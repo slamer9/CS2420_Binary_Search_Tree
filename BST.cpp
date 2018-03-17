@@ -38,6 +38,12 @@ unsigned int BST::size()
 
 int BST::getMax()
 {
+    if(this->root == nullptr)
+    {
+        cout << endl << "List is empty." << endl;
+        return 0;   //Throw exception if I use this program more.
+    }
+    
     BSTNode* temp = this->root;
     if(this->root->right() != nullptr)
     {
