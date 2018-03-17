@@ -109,7 +109,7 @@ void BST::erase_helper(BSTNode* base, BSTNode* parent, int value) //pointer refe
                 this->root = base;
 
                 delete temp;
-                this->list_size--;
+                --this->list_size;
                 return;
             }
         }else if(base->right() == nullptr)  //Is right-less
@@ -118,10 +118,12 @@ void BST::erase_helper(BSTNode* base, BSTNode* parent, int value) //pointer refe
             {
                 parent->rightReference() = base->left();
                 delete base;
+                --this->list_size;
             }else if(parent->left() == base)
             {
                 parent->leftReference() = base->left();
                 delete base;
+                --this->list_size;
             }else
             {
                 cout << endl << "Your parent logic failed" << endl; ///Debugging
@@ -132,10 +134,12 @@ void BST::erase_helper(BSTNode* base, BSTNode* parent, int value) //pointer refe
             {
                 parent->rightReference() = base->right();
                 delete base;
+                --this->list_size;
             }else if(parent->left() == base)
             {
                 parent->leftReference() = base->right();
                 delete base;
+                --this->list_size;
             }else
             {
                 cout << endl << "Your parent logic failed" << endl; ///Debugging
@@ -160,7 +164,7 @@ void BST::erase_helper(BSTNode* base, BSTNode* parent, int value) //pointer refe
             }
 
             delete temp;
-            this->list_size--;
+            --this->list_size;
             return;
         }
     } else                  //Keep searching
