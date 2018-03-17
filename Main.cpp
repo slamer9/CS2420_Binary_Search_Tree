@@ -1,3 +1,4 @@
+//Fin(1)
 /// An interactive test program template
 
 // File/Project Prolog
@@ -43,6 +44,7 @@ int main( )
     BST myTree = BST();
     char choice;   // A command character entered by the user
     int entry;
+    int maxVal;
     
     cout << "I have initialized an empty sequence of real numbers." << endl;    //?
 
@@ -61,7 +63,7 @@ int main( )
                 if(validInput == true)
                 {
                     myTree.Insert(entry);
-                    cout << endl << "Node added." << endl;
+                    cout << endl << "Node added." << endl << endl;
                 }
 			    break;
             
@@ -95,9 +97,12 @@ int main( )
 			    break;
             
             case 'E': // Delete max
-                BSTNode* maxNode = myTree.removeMax();
-                cout << "The maximum value in the tree (" << maxNode->data() << "), was removed." << endl;
-                delete maxNode;
+                maxVal = myTree.removeMax();
+                cout << "The maximum value in the tree (" << maxVal << "), was removed." << endl;
+                break;
+
+            case 'L': // Reprint list
+                print_menu();
                 break;
 			
 			case 'Q': cout << "Ridicule is the best test of truth." << endl;
@@ -114,7 +119,7 @@ int main( )
 void print_menu( )
 // Library facilities used: iostream.h
 {
-    //Current letters used.  S,I,D,P,R,O,T,M,E
+    //Current letters used.  S,I,D,P,R,O,T,M,E,R
     cout << endl; // Print blank line before the menu
     cout << "The following choices are available: " << endl;
     cout << "Get the size of the tree:---------------------[S]" << endl;
@@ -126,19 +131,20 @@ void print_menu( )
     cout << "Print while traverseing the tree(Post-Order):-[T]" << endl;
     cout << "Display max value of the tree:----------------[M]" << endl;
     cout << "Delete the maximum value from the tree:-------[E]" << endl;
+    cout << "Reprint choice list:--------------------------[L]" << endl;
     //cout << "insert multiple nodes into the tree: [M]" << endl;
 	
     //
 	// More Choices
 	//
 
-    cout << " Q   Quit this test program" << endl;
+    cout << " Q   Quit this test program" << endl << endl;
 }
 
 char get_user_command( )
 // Library facilities used: iostream
 {
-    char command;
+    char command = ' ';
 
     cout << "Enter choice: ";
     cin >> command; // Input of characters skips blanks and newline character

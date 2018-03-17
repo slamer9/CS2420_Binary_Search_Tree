@@ -63,23 +63,65 @@ void BST::Erase(int value)
     if(this->root != nullptr)
     {
         this->erase_helper(this->root, value);
+    } else
+    {
+        cout << endl << "List is empty." << endl;
     }
 }
 
 void BST::erase_helper(BSTNode*& base, int value) //pointer reference?
 {
-    BSTNode* temp;
+    //BSTNode* temp;
     int baseData = base->data();
 
-    if(baseData == value)
+    if(base == this->root && baseData == value) //Delete root.
+    {
+
+    }else if(baseData == value)
+    {
+        cout << endl << "Logical error in erase_helper." << endl;
+    }else if(value < baseData)
+    {
+        if(base->left() != nullptr)
+        {
+            erase_helper(base->rightReference(), value);
+        }else
+        {
+            //Value not in tree
+        }
+    }else if(value > baseData)
+    {
+        if(base->left() != nullptr)
+        {
+            erase_helper(base->leftReference(), value);
+        }
+    }//else if(baseData < value)
+    // {
+    //     if(base->right() != nullptr)
+    //     {
+    //         erase_helper(base->rightReference(), value);
+    //     }
+    // }else if(baseData > value)
+    // {
+    //     if(base->left() != nullptr)
+    //     {
+    //         erase_helper(base->leftReference(), value);
+    //     }
+    //}
+    else if(baseData == value)
     {
         if(base->right() == nullptr)
         {
             if(base->left() != nullptr)
             {
-                temp = base;
-                base = base->left();
-                delete temp;
+                parent->rightReference() = base->left();
+                delete base;
+                this->list_size--;
+                return;
+            }else
+            {
+                if(;
+                delete base;
                 this->list_size--;
                 return;
             }
@@ -87,9 +129,14 @@ void BST::erase_helper(BSTNode*& base, int value) //pointer reference?
         {
             if(base->right() != nullptr)
             {
-                temp = base;
-                base = base->right();
-                delete temp;
+                temp->leftReference() = base->right();
+                delete base;
+                this->list_size--;
+                return;
+            }else
+            {
+                temp = nullptr;
+                delete base;
                 this->list_size--;
                 return;
             }
@@ -102,18 +149,6 @@ void BST::erase_helper(BSTNode*& base, int value) //pointer reference?
             delete temp;
             this->list_size--;
             return;
-        }
-    }else if(baseData < value)
-    {
-        if(base->right() != nullptr)
-        {
-            erase_helper(base->rightReference(), value);
-        }
-    }else if(baseData > value)
-    {
-        if(base->left() != nullptr)
-        {
-            erase_helper(base->leftReference(), value);
         }
     }
 }
@@ -139,29 +174,27 @@ BSTNode* BST::removeMaxUnder(BSTNode* base, BSTNode* parent) //base, nothing to 
     }
 }
 
-BSTNode* BST::removeMax()
+int BST::removeMax()
 {
+    int valRemoved = 0;
     if(this->root != nullptr)
     {
         BSTNode* temp = this->root;
-        BSTNode* parent = this->root;
+        //BSTNode* parent = this->root;
         while(temp->right() != nullptr)
         {
-            parent = temp;
+            //parent = temp;
             temp = temp->right();
         }
-        if(temp == this->root)
-        {
-
-        }else
-        {
-            parent->rightReference() = temp->left();
-            return temp;
-        }
+        valRemoved = temp->data();
+        this->Erase(temp->data());
     } else
     {
-        cout << endl << "List is empty." << endl;
+        cout << endl << "List is empty." << endl;   //Throw an exception to stop from displaying wrong stuff
+                                                    //but not required for this project so ill add it if I 
+                                                    //have time.
     }
+    return valRemoved;
 }
 
 void BST::Insert(int value)
@@ -169,6 +202,7 @@ void BST::Insert(int value)
     if(this->root == nullptr)
     {
         this->root = new BSTNode(value);
+        this->list_size++;
     } else
     {
         bool discard = false;
@@ -178,12 +212,12 @@ void BST::Insert(int value)
 
         while(temp != nullptr)
         {
-            if(temp->data() < value)
+            if(temp->data() > value)
             {
                 temp2 = temp;
                 temp = temp->left();
                 left = true;
-            } else if(temp->data() > value)
+            } else if(temp->data() < value)
             {
                 temp2 = temp;
                 temp = temp->right();
@@ -200,7 +234,7 @@ void BST::Insert(int value)
         }
         if(discard == false)
         {
-            if(left = true)
+            if(left == true)
             {
                 temp2->leftReference() = new BSTNode(value);
             } else

@@ -15,8 +15,8 @@ public:
     void Erase(int value);
 
     BSTNode* removeMaxUnder(BSTNode* base, BSTNode* parent);    //Erase helper
-    BSTNode* removeMax();
-    int getMax();                                               //Added because why not.
+    int removeMax();                                       //Added because why not?
+    int getMax();                                               //Added because why not?
 
     void Insert(int value);  //Don't allow duplcates
 
